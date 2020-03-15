@@ -16,5 +16,13 @@ pipeline {
         sh 'mvn package'
       }
     }
+    stage('Deploy') {
+      when {
+        expression { BRANCH_NAME == 'master' }
+      }
+      steps {
+        sh 'mvn deploy'
+      }
+    }
   }
 }
